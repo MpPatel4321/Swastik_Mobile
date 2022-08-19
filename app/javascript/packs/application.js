@@ -18,7 +18,7 @@ import { Tooltip, Popover } from "bootstrap"
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-require("../stylesheets/application.scss")
+// require("../stylesheets/application.scss")
 
 document.addEventListener("turbolinks:load", () => {
   // Both of these are from the Bootstrap 5 docs
