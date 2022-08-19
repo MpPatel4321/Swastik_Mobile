@@ -1,0 +1,22 @@
+<h2>Categories</h2>
+<hr>
+<ul class="navbar-nav">
+  <% sr = 1 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th> SR </th>
+        <th> Category </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <th><%= sr %></th>
+          <td><%= category.name %></td>
+        </tr>
+        <% sr = sr + 1 %>
+      <% end %>
+    </tbody>
+  </table>
+</ul>

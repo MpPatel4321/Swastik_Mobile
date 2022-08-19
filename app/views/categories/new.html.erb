@@ -1,0 +1,27 @@
+<h2>Create Category</h2><hr>
+<%= form_with url: categories_path do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+        <% @category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, autofocus: true,
+                                class: "form-control" %>
+    </div>
+  </div>
+  <%= f.hidden_field :item_type, value: 'category' %><br />
+  <div class="form-group">
+    <div class="col-sm-6 col-sm-offset-2">
+      <%= f.submit "Create", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

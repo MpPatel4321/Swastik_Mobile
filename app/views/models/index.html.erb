@@ -1,0 +1,22 @@
+<h2>Models</h2>
+<hr>
+<ul class="navbar-nav">
+  <% sr = 1 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th> SR </th>
+        <th> Model </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @models.each do |model| %>
+        <tr>
+          <th><%= sr %></th>
+          <td><%= model.name %></td>
+        </tr>
+        <% sr = sr + 1 %>
+      <% end %>
+    </tbody>
+  </table>
+</ul>

@@ -1,0 +1,70 @@
+<h2>Create Company</h2><hr>
+<%= form_with url: models_path do |f| %>
+  <% if @model.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@model.errors.count, "error") %> prohibited this model from being saved:</h2>
+
+      <ul>
+        <% @model.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :category, class: "col-sm-4 control-label" %>
+    <div class="col-sm-6">
+      <select id="select_1" class="form-control" >
+        <option value="">Select Category </option>
+        <% @categories.each do |category| %>
+          <option value="<%= category.id %>">
+            <%= category.name %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :company, class: "col-sm-4 control-label" %>
+    <div class="col-sm-6">
+      <select id="select_2" class="form-control" >
+        <option value="">Select On Time </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, autofocus: true,
+                                class: "form-control" %>
+    </div>
+  </div>
+  <%= f.hidden_field :parrent_id, class: "company" %>
+  <%= f.hidden_field :item_type, value: 'company' %><br />
+  <div class="form-group">
+    <div class="col-sm-6 col-sm-offset-2">
+      <%= f.submit "Create", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $("#select_1").on("change",function() {
+      var category = $('select#select_1 :selected').val();
+      $.ajax({
+        url:  '/set_companies',
+        data: ('id=' + category),
+        type: "GET",
+        dataType: "script"
+      });
+    });
+    $("#select_2").on("change",function() {
+      var company = $('select#select_2 :selected').val();
+      $('.company').val(company)
+    });
+  });
+</script>

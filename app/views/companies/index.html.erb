@@ -1,0 +1,22 @@
+<h2>Companies</h2>
+<hr>
+<ul class="navbar-nav">
+  <% sr = 1 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th> SR </th>
+        <th> Company </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @companies.each do |company| %>
+        <tr>
+          <th><%= sr %></th>
+          <td><%= company.name %></td>
+        </tr>
+        <% sr = sr + 1 %>
+      <% end %>
+    </tbody>
+  </table>
+</ul>
