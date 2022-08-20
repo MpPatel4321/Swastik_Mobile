@@ -1,0 +1,3 @@
+class ImportedItemsController < ApplicationController
+  
+end
