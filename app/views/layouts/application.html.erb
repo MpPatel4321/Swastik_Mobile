@@ -28,15 +28,18 @@
             <%# end %>
           </li>
           <li class="nav-item <%= root_path %>">
-            <%= link_to 'Add Category', new_category_path, class: "nav-link text-primary" %>
+            <%= link_to 'Categories', categories_path, class: "nav-link text-primary" %>
           </li>
           <% categories = Item.where(item_type: 'category') %>
           <% unless categories.blank? %>
             <li class="nav-item <%= root_path %>">
-              <%= link_to 'Add Company', new_company_path, class: "nav-link text-primary" %>
+              <%= link_to 'Companies', companies_path, class: "nav-link text-primary" %>
             </li>
             <li class="nav-item <%= root_path %>">
-              <%= link_to 'Add Model', new_model_path, class: "nav-link text-primary" %>
+              <%= link_to 'Models', models_path, class: "nav-link text-primary" %>
+            </li>
+            <li class="nav-item <%= root_path %>">
+              <%= link_to 'Imported Item', imported_items_path, class: "nav-link text-primary" %>
             </li>
           <% end %>
           <li class="nav-item <%= root_path %>">

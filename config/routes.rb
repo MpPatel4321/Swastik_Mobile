@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :companies
   resources :models
-  get "set_companies", to: 'models#set_companies'
+  resources :imported_items
+  get "set_items", to: 'companies#set_items'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
