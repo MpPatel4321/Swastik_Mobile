@@ -1,11 +1,11 @@
 <h2>Create Company</h2><hr>
-<%= form_with url: models_path do |f| %>
-  <% if @model.errors.any? %>
+<%= form_for @imported_item do |f| %>
+  <% if @imported_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@model.errors.count, "error") %> prohibited this model from being saved:</h2>
+      <h2><%= pluralize(@imported_item.errors.count, "error") %> prohibited this imported_item from being saved:</h2>
 
       <ul>
-        <% @model.errors.full_messages.each do |message| %>
+        <% @imported_item.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -35,14 +35,38 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :model, class: "col-sm-2 control-label" %>
+    <%= f.label :model, class: "col-sm-4 control-label" %>
     <div class="col-sm-6">
-      <%= f.text_field :name, autofocus: true,
+      <select id="select_model" class="form-control" >
+        <option value="">Select Model </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :imported_date, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.date_field :imported_date, autofocus: true,
                                 class: "form-control" %>
     </div>
   </div>
-  <%= f.hidden_field :parrent_id, class: "company" %>
-  <%= f.hidden_field :item_type, value: 'model' %><br />
+
+  <div class="form-group">
+    <%= f.label :quantity, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.number_field :quantity, autofocus: true,
+                                class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price_per_unit, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.number_field :price_per_unit, autofocus: true,
+                                class: "form-control" %>
+    </div>
+  </div>
+  <%= f.hidden_field :item_id, class: "model" %><br />
   <div class="form-group">
     <div class="col-sm-6 col-sm-offset-2">
       <%= f.submit "Create", class: 'btn btn-primary' %>
@@ -64,7 +88,16 @@
     });
     $("#select_company").on("change",function() {
       var company = $('select#select_company :selected').val();
-      $('.company').val(company)
+      $.ajax({
+        url:  '/set_items',
+        data: ('id=' + company),
+        type: "GET",
+        dataType: "script"
+      });
+    });
+    $("#select_model").on("change",function() {
+      var model = $('select#select_model :selected').val();
+      $('.model').val(model)
     });
   });
 </script>

@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_19_090604) do
+ActiveRecord::Schema.define(version: 2022_08_19_145758) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "bills", force: :cascade do |t|
     t.string "name"
@@ -20,10 +23,21 @@ ActiveRecord::Schema.define(version: 2022_08_19_090604) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "imported_items", force: :cascade do |t|
+    t.datetime "imported_date"
+    t.integer "quantity"
+    t.integer "price_per_unit"
+    t.integer "total_price"
+    t.bigint "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_imported_items_on_item_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "item_type"
-    t.integer "parrent_id"
+    t.bigint "parrent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["parrent_id"], name: "index_items_on_parrent_id"
@@ -42,5 +56,6 @@ ActiveRecord::Schema.define(version: 2022_08_19_090604) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "imported_items", "items"
   add_foreign_key "items", "items", column: "parrent_id"
 end

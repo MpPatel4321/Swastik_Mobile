@@ -18,11 +18,6 @@ class ModelsController < ApplicationController
     end
   end
 
-  def set_companies
-    category = Item.find(params[:id])
-    @companies = category.sub_items
-  end
-
   private
 
   def model_params

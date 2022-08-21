@@ -19,6 +19,11 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def set_items
+    item = Item.find(params[:id])
+    @items = item.sub_items
+  end
+
   private
 
   def company_params

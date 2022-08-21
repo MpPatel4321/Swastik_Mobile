@@ -1,0 +1,36 @@
+<h2>Imported Item</h2>
+<%= link_to 'Add Imported Item', new_imported_item_path, class: "text-primary" %>
+
+<hr>
+<ul class="navbar-nav">
+  <% sr = 1 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th> SR </th>
+        <th> Catagory </th>
+        <th> Company </th>
+        <th> Model </th>
+        <th> Imported Date </th>
+        <th> Quentity </th>
+        <th> Price Per Unit </th>
+        <th> Total Price </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @imported_items.each do |imported_item| %>
+        <tr>
+          <th><%= sr %></th>
+          <td><%= imported_item.item.parrent.parrent.name %></td>
+          <td><%= imported_item.item.parrent.name %></td>
+          <td><%= imported_item.item.name %></td>
+          <td><%= imported_item.imported_date.strftime("%d/%m/%y") %></td>
+          <td><%= imported_item.quantity %></td>
+          <td><%= imported_item.price_per_unit %></td>
+          <td><%= imported_item.total_price %></td>
+        </tr>
+        <% sr = sr + 1 %>
+      <% end %>
+    </tbody>
+  </table>
+</ul>

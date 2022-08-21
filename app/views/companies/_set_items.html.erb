@@ -1,0 +1,10 @@
+<% if @items.blank? %>
+  <option value=""> Please Add <%= @items.last.item_type.camelize %> First </option>
+<% else %>
+  <option value="">Select <%= @items.last.item_type.camelize %> </option>
+  <% @items.each do |item| %>
+    <option value="<%= item.id %>">
+      <%= item.name %>
+    </option>
+  <% end %>
+<% end %>
