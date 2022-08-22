@@ -1,5 +1,119 @@
-<h1>New Bill</h1>
+<h2>Create Bill</h2><hr>
+<%= form_for @bill do |f| %>
+  <% if @bill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
 
-<%= render 'form', bill: @bill %>
+      <ul>
+        <% @bill.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :category, class: "col-sm-4 control-label" %>
+    <div class="col-sm-6">
+      <select id="select_1" class="form-control" >
+        <option value="">Select Category </option>
+        <% @categories.each do |category| %>
+          <option value="<%= category.id %>">
+            <%= category.name %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+  </div>
 
-<%= link_to 'Back', bills_path %>
+  <div class="form-group">
+    <%= f.label :company, class: "col-sm-4 control-label" %>
+    <div class="col-sm-6">
+      <select id="select_company" class="form-control" >
+        <option value="">Select Company </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :model, class: "col-sm-4 control-label" %>
+    <div class="col-sm-6">
+      <select id="select_model" class="form-control" >
+        <option value="">Select Model </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, autofocus: true,
+                                class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :father_name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :father_name, autofocus: true,
+                                class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :address, autofocus: true,
+                                class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :mobile_no, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.number_field :mobile_no, autofocus: true,
+                                class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.number_field :price, autofocus: true,
+                                class: "form-control" %>
+    </div>
+  </div>
+  <%= f.hidden_field :item_id, class: "model" %><br />
+  <div class="form-group">
+    <div class="col-sm-6 col-sm-offset-2">
+      <%= f.submit "Create", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $("#select_1").on("change",function() {
+      var category = $('select#select_1 :selected').val();
+      $.ajax({
+        url:  '/set_items',
+        data: ('id=' + category),
+        type: "GET",
+        dataType: "script"
+      });
+    });
+    $("#select_company").on("change",function() {
+      var company = $('select#select_company :selected').val();
+      $.ajax({
+        url:  '/set_items',
+        data: ('id=' + company),
+        type: "GET",
+        dataType: "script"
+      });
+    });
+    $("#select_model").on("change",function() {
+      var model = $('select#select_model :selected').val();
+      $('.model').val(model)
+    });
+  });
+</script>
