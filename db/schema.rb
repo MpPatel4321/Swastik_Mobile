@@ -17,10 +17,14 @@ ActiveRecord::Schema.define(version: 2022_08_19_145758) do
 
   create_table "bills", force: :cascade do |t|
     t.string "name"
-    t.integer "mobile_no"
+    t.string "father_name"
+    t.string "address"
+    t.bigint "mobile_no"
     t.integer "price"
+    t.bigint "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_bills_on_item_id"
   end
 
   create_table "imported_items", force: :cascade do |t|
@@ -56,6 +60,7 @@ ActiveRecord::Schema.define(version: 2022_08_19_145758) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bills", "items"
   add_foreign_key "imported_items", "items"
   add_foreign_key "items", "items", column: "parrent_id"
 end
