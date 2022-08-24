@@ -1,0 +1,29 @@
+<h2>Total Stocks</h2>
+
+<hr>
+<ul class="navbar-nav">
+  <% sr = 1 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th> SR </th>
+        <th> Catagory </th>
+        <th> Company </th>
+        <th> Model </th>
+        <th> Total Item </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% sort_stocks(@stocks).each do |stock| %>
+        <tr>
+          <th><%= sr %></th>
+          <td><%= stock.item.parrent.parrent.name %></td>
+          <td><%= stock.item.parrent.name %></td>
+          <td><%= stock.item.name %></td>
+          <td><%= stock.quantity %></td>
+        </tr>
+        <% sr = sr + 1 %>
+      <% end %>
+    </tbody>
+  </table>
+</ul>

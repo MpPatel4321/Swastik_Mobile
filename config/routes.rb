@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :companies
   resources :models
   resources :imported_items
+  resources :stocks, only: :index
   get "set_items", to: 'companies#set_items'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

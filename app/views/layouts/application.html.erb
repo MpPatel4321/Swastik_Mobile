@@ -23,9 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <%#= link_to users_path, class: 'nav-link' do %>
-              <!-- <image src="/assets/find_friend.png" class="avatar float-left"> -->
-            <%# end %>
+            <%= link_to 'Check Stock', stocks_path, class: 'nav-link text-primary' %>
           </li>
           <li class="nav-item <%= root_path %>">
             <%= link_to 'Categories', categories_path, class: "nav-link text-primary" %>
