@@ -13,6 +13,7 @@ module StocksHelper
         end
       else
         temp << { stock.item.name => { 'stocks' => [stock], 'quantity' => [stock.quantity] } }
+        update_quantity_from_bill(stock, temp)
       end
     end
     add_quantity(temp)
@@ -26,5 +27,12 @@ module StocksHelper
       end
     end
     stocks
+  end
+
+  def update_quantity_from_bill(stock, temp)
+    stock.item.bills.each do |bill|
+      temp.last[stock.item.name]['quantity'].prepend(temp.last[stock.item.name]['quantity'].first - 1)
+      temp.last[stock.item.name]['quantity'].pop
+    end
   end
 end

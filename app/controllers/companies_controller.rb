@@ -24,6 +24,11 @@ class CompaniesController < ApplicationController
     @items = item.sub_items
   end
 
+  def set_price
+    model = Item.find(params[:id])
+    @price = model.imported_items.last.price_per_unit + 1000
+  end
+
   private
 
   def company_params

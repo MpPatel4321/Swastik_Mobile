@@ -7,6 +7,8 @@
     <thead>
       <tr>
         <th> SR </th>
+        <th> Category </th>
+        <th> Company </th>
         <th> Model </th>
       </tr>
     </thead>
@@ -14,6 +16,8 @@
       <% @models.each do |model| %>
         <tr>
           <th><%= sr %></th>
+          <td><%= model.parrent.parrent.name %></td>
+          <td><%= model.parrent.name %></td>
           <td><%= model.name %></td>
         </tr>
         <% sr = sr + 1 %>
