@@ -92,8 +92,8 @@
   <div class="form-group">
     <%= f.label :total_price, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-      <%= f.number_field :price, autofocus: true,
-          disabled: true, class: "price form-control" %>
+      <input autofocus="autofocus" class="price form-control" type="number" name="total_price" disabled="true">
+      <%= f.hidden_field :price, class: "price" %>
     </div>
   </div>
 
