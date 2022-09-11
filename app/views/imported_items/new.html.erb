@@ -63,9 +63,26 @@
     <%= f.label :price_per_unit, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.number_field :price_per_unit, autofocus: true,
-                                class: "form-control" %>
+                                class: "price_per_unit form-control" %>
     </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label 'profit (%)', class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.number_field :profit, autofocus: true,
+                            class: "profit form-control" %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label 'final price per unit', class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+    <input autofocus="autofocus" class="form-control" type="number" id="final-price">
+    </div>
+  </div>
+
   <%= f.hidden_field :item_id, class: "model" %><br />
   <div class="form-group">
     <div class="col-sm-6 col-sm-offset-2">
@@ -98,6 +115,12 @@
     $("#select_model").on("change",function() {
       var model = $('select#select_model :selected').val();
       $('.model').val(model)
+    });
+    $(".profit").on("change",function() {
+      var profit = $('.profit').val();
+      var price = $('.price_per_unit').val();
+      final_price = (profit * price)/100;
+      $('#final-price').val(parseInt(price) + parseInt(final_price));
     });
   });
 </script>

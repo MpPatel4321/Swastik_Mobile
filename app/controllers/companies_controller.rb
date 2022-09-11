@@ -27,7 +27,8 @@ class CompaniesController < ApplicationController
   def set_price
     model = Item.find(params[:id])
     @price = model.imported_items.last.price_per_unit
-    @price += (@price * 25 )/100
+    profit = model.imported_items.last.profit
+    @price += (@price * profit )/100
   end
 
   private

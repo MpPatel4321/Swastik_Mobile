@@ -21,6 +21,6 @@ class ImportedItemsController < ApplicationController
   private
 
   def imported_item_params
-    params.require(:imported_item).permit(:imported_date, :quantity, :price_per_unit, :item_id)
+    params.require(:imported_item).permit(:imported_date, :quantity, :price_per_unit, :item_id, :profit)
   end
 end
