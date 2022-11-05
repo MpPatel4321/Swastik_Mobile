@@ -20,7 +20,9 @@
       </tr>
     </thead>
     <tbody>
+      <% prices = [] %>
       <% @bills.each do |bill| %>
+        <% prices << bill.price %>
         <tr>
           <th><%= sr %></th>
           <td><%= bill.name %></td>
@@ -35,6 +37,10 @@
         </tr>
         <% sr = sr + 1 %>
       <% end %>
+      <tr bgcolor="yellow">
+        <th colspan="9">Total Price</th>
+        <th><%= prices.sum %></th>
+      </tr>
     </tbody>
   </table>
 </ul>

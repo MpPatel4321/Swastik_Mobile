@@ -1,5 +1,5 @@
-<h2>Models</h2>
-<%= link_to 'Add Model', new_model_path, class: "text-primary" %>
+<h2>Total Stocks</h2>
+
 <hr>
 <ul class="navbar-nav">
   <% sr = 1 %>
@@ -7,18 +7,20 @@
     <thead>
       <tr>
         <th> SR </th>
-        <th> Category </th>
+        <th> Catagory </th>
         <th> Company </th>
         <th> Model </th>
+        <th> Total Item </th>
       </tr>
     </thead>
     <tbody>
-      <% @models.each do |model| %>
+      <% sort_stocks(@stocks).each do |stock| %>
         <tr>
           <th><%= sr %></th>
-          <td><%= model.parrent.parrent.name %></td>
-          <td><%= model.parrent.name %></td>
-          <td><%= model.name %></td>
+          <td><%= stock.item.parrent.parrent.name %></td>
+          <td><%= stock.item.parrent.name %></td>
+          <td><%= stock.item.name %></td>
+          <td><%= stock.quantity %></td>
         </tr>
         <% sr = sr + 1 %>
       <% end %>
